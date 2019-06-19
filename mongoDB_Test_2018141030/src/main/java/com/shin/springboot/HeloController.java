@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.jin.springboot.MyDataMongo;
+import com.shin.springboot.MyDataMongo;
 import com.shin.springboot.repositories.MyDataMongoRepository;
 
 @Controller
@@ -99,6 +99,32 @@ public class HeloController {
 		repository.save(mydata);
 		
 		return new ModelAndView("redirect:/");
+	}
+	
+	/**
+	 *
+	 * @fn 		public ModelAndView detail(ModelAndView mav)
+	 * 
+	 * @brief 	상세 조회 페이지
+	 *
+	 * @author 	신예성 
+	 * @date 	2019-06-20
+	 *
+	 * @param 	mav ModelAndView
+	 *
+	 * @remark	findBy 를 이용한 조건검색 후 출력	[2019-06-20; 신예성] \n
+	 *
+	 */
+	
+	@RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
+	public ModelAndView detail(@PathVariable("id") String id, ModelAndView mav) {
+		mav.setViewName("detail");
+		mav.addObject("title", "상세 일정 페이지");
+		mav.addObject("msg", "상세 조회 및 수정 삭제");
+
+		List<MyDataMongo> list = repository.findById(id);
+		mav.addObject("datalist", list);
+		return mav;
 	}
 
 }
