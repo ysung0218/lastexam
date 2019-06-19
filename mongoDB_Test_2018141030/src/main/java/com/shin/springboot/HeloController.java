@@ -173,5 +173,33 @@ public class HeloController {
 		repository.deleteById(id);
 		return new ModelAndView("redirect:/");
 	}
+	
+	/**
+	 *
+	 * @fn 		public ModelAndView edit(ModelAndView mav)
+	 * 
+	 * @brief 	수정페이지
+	 *
+	 * @author 	신예성
+	 * @date 	2019-06-20
+	 *
+	 * @param 	mav ModelAndView
+	 *
+	 * @remark	findBy를 이용해 조건에 충족되는 데이터를 List에 저장 후 화면에 표시	[2019-06-20; 신예성] \n
+	 *
+	 */
+	
+	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+	public ModelAndView edit(@PathVariable("id") String id, ModelAndView mav) {
+		
+		mav.setViewName("edit");
+		mav.addObject("title", "일정 수정 페이지");
+		mav.addObject("msg", "수정할 일정 데이터를 입력해주세요.");
+		
+		List<MyDataMongo> list = repository.findById(id);
+		
+		mav.addObject("datalist", list);
+		return mav;
+	}
 
 }
