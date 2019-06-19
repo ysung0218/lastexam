@@ -92,10 +92,10 @@ public class HeloController {
 			@RequestParam("place") String place, 
 			@RequestParam("day") String day,
 			@RequestParam("schedule") String schedule, 
-			@RequestParam("seasone") String seasone, 
+			@RequestParam("seasone") String season, 
 			ModelAndView mov) 
 	{
-		MyDataMongo mydata = new MyDataMongo(place, day, schedule, seasone);
+		MyDataMongo mydata = new MyDataMongo(place, day, schedule, season);
 		repository.save(mydata);
 		
 		return new ModelAndView("redirect:/");
