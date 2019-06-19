@@ -7,7 +7,8 @@
 h1 {
 	font-size: 18pt;
 	font-weight: bold;
-	color: gray;
+	color: #08126c;
+	text-align: center;
 }
 
 body {
@@ -23,13 +24,13 @@ tr {
 th {
 	padding: 5px;
 	color: white;
-	background: darkgray;
+	background: #08126c;
 }
 
 td {
 	padding: 5px;
 	color: black;
-	background: #e0e0ff;
+	background: skyblue;
 }
 
 table.navi {
@@ -48,13 +49,41 @@ table.navi tr td {
 .err {
 	color: red;
 }
+.last {
+	background: #FFF;
+}
+
+footer {
+    width: 90%;
+	margin: 0 auto;
+    position: relative;
+    padding: 10px 0;
+    bottom: 0px;
+    text-align: center;
+    font-size: 16px;
+    color:black;
+	margin-top:20px;
+}
+
+#table {
+	margin:0 auto;
+}
+
+#table2 {
+	margin: 0 auto;
+	margin-bottom:20px;
+}
+
+#sub_title {
+	text-align: center;
+}
 </style>
 </head>
 <body>
-	<h1 th:text="#{content.title}">일정 입력 페이지</h1>
+	<h1>일정 입력 페이지</h1>
 	<p th:text="${msg}"></p>
 	
-	<table>
+	<table id="table">
 		<form method="post" action="/insert">
 		<input type="hidden" name="id" th:value="*{id}" />
 			<tr>
