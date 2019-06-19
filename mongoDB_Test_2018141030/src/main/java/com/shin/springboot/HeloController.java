@@ -201,5 +201,37 @@ public class HeloController {
 		mav.addObject("datalist", list);
 		return mav;
 	}
-
+	
+	/**
+	 *
+	 * @fn 		public ModelAndView editpost(ModelAndView mav)
+	 * 
+	 * @brief 	데이터 수정
+	 *
+	 * @author 	신예성
+	 * @date 	2019-06-20
+	 *
+	 * @param 	mav ModelAndView
+	 *
+	 * @remark	폼에 입력된 값을 받아온 후 객체에 저장	[2019-06-20; 신예성] \n
+	 *		   	save 메소드를 이용해 DB에 저장		[2019-06-20; 신예성] \n
+	 *			deleteBy를 이용해 이전데이터 삭제	[2019-06-20; 신예성] \n
+	 *
+	 */
+	
+	@RequestMapping(value = "/edit", method = RequestMethod.POST)
+	public ModelAndView editpost(
+			@RequestParam("id") String id, 
+			@RequestParam("place") String place,
+			@RequestParam("day") String day, 
+			@RequestParam("schedule") String schedule,
+			@RequestParam("season") String season, 
+			ModelAndView mov) 
+	{
+		MyDataMongo mydata = new MyDataMongo(place, day, schedule, season);
+		repository.save(mydata);
+		repository.deleteById(id);
+		
+		return new ModelAndView("redirect:/");
+	}
 }
