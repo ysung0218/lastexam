@@ -39,8 +39,7 @@ public class HeloController {
 	public ModelAndView index(ModelAndView mav) {
 
 		mav.setViewName("index");
-		mav.addObject("title", "여행 일정 작성 페이지");
-		mav.addObject("msg", "일정을 입력해주세요.");
+	
 
 		Iterable<MyDataMongo> list = repository.findAll();
 		mav.addObject("datalist", list);
@@ -65,8 +64,6 @@ public class HeloController {
 	@RequestMapping(value = "/insert", method = RequestMethod.GET)
 	public ModelAndView insert(ModelAndView mav) {
 		mav.setViewName("insert");
-		mav.addObject("title", "일정 입력 페이지");
-		mav.addObject("msg", "일정 데이터를 입력해주세요");
 
 		return mav;
 	}
@@ -92,7 +89,7 @@ public class HeloController {
 			@RequestParam("place") String place, 
 			@RequestParam("day") String day,
 			@RequestParam("schedule") String schedule, 
-			@RequestParam("seasone") String season, 
+			@RequestParam("season") String season, 
 			ModelAndView mov) 
 	{
 		MyDataMongo mydata = new MyDataMongo(place, day, schedule, season);
@@ -119,8 +116,6 @@ public class HeloController {
 	@RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
 	public ModelAndView detail(@PathVariable("id") String id, ModelAndView mav) {
 		mav.setViewName("detail");
-		mav.addObject("title", "상세 일정 페이지");
-		mav.addObject("msg", "상세 조회 및 수정 삭제");
 
 		List<MyDataMongo> list = repository.findById(id);
 		mav.addObject("datalist", list);
@@ -145,8 +140,6 @@ public class HeloController {
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 	public ModelAndView removecheck(@PathVariable("id") String id, ModelAndView mav) {
 		mav.setViewName("delete");
-		mav.addObject("title", "Delete Page");
-		mav.addObject("msg", "삭제 유무 확인");
 
 		List<MyDataMongo> list = repository.findById(id);
 		mav.addObject("datalist", list);
@@ -193,8 +186,6 @@ public class HeloController {
 	public ModelAndView edit(@PathVariable("id") String id, ModelAndView mav) {
 		
 		mav.setViewName("edit");
-		mav.addObject("title", "일정 수정 페이지");
-		mav.addObject("msg", "수정할 일정 데이터를 입력해주세요.");
 		
 		List<MyDataMongo> list = repository.findById(id);
 		
