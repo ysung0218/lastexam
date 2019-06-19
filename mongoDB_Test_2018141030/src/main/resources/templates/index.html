@@ -52,14 +52,26 @@ table.navi tr td {
 	background: #FFF;
 }
 
+footer {
+    width: 90%;
+	margin: 0 auto;
+    position: relative;
+    padding: 10px 0;
+    bottom: 0px;
+    text-align: center;
+    font-size: 16px;
+    color:black;
+	margin-top:20px;
+}
+
 </style>
 </head>
 <body>
-	<h1 th:text="#{content.title}">여행 일정 페이지입니다.</h1>
+	<h1>여행 일정 페이지입니다.</h1>
 	<p th:text="${msg}"></p>
 	<a th:href="@{'/insert'}">일정 입력하기</a>
 	<p>
-	<table>
+	<table id="table">
 		<form method="post" action="/">
 			<input type="hidden" name="id" th:value="*{id}" />
 		<tr>
@@ -78,5 +90,7 @@ table.navi tr td {
 		</tr>
 		</form>
 	</table>
+	
+	<footer><p>Copyrightⓒ2019 By 2018141030 All right reserved.</p></footer>
 </body>
 </html>
