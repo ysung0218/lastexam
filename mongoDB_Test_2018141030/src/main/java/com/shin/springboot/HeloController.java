@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jin.springboot.MyDataMongo;
 import com.shin.springboot.repositories.MyDataMongoRepository;
 
 @Controller
@@ -68,6 +69,36 @@ public class HeloController {
 		mav.addObject("msg", "일정 데이터를 입력해주세요");
 
 		return mav;
+	}
+	
+	/**
+	 *
+	 * @fn 		public ModelAndView insert(ModelAndView mav)
+	 * 
+	 * @brief 	입력 페이지 설정 
+	 *
+	 * @author 	신예성
+	 * @date 	2019-06-20
+	 *
+	 * @param 	mav ModelAndView
+	 *
+	 * @remark	폼에 입력된 값을 받아온 후 객체에 저장		[2019-06-20; 신예성] \n
+	 *		   	save 메소드를 이용해 DB에 저장			[2019-06-20; 신예성] \n
+	 *
+	 */
+	
+	@RequestMapping(value = "/insert", method = RequestMethod.POST)
+	public ModelAndView form(
+			@RequestParam("place") String place, 
+			@RequestParam("day") String day,
+			@RequestParam("schedule") String schedule, 
+			@RequestParam("seasone") String seasone, 
+			ModelAndView mov) 
+	{
+		MyDataMongo mydata = new MyDataMongo(place, day, schedule, seasone);
+		repository.save(mydata);
+		
+		return new ModelAndView("redirect:/");
 	}
 
 }
